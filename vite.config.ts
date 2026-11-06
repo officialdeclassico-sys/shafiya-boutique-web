@@ -6,7 +6,7 @@ import { defineConfig } from 'vite';
 
 export default defineConfig(() => {
   return {
-    base: '/shafiya-kashmiri-designs/',
+    base: '/shafiya-boutique-web/',
 
     plugins: [react(), tailwindcss()],
 

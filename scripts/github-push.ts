@@ -466,7 +466,7 @@ export async function runGitHubPush(options: GitHubPushOptions): Promise<GitHubP
   const {
     workspaceRoot,
     token = process.env.GITHUB_TOKEN?.trim(),
-    repo = process.env.GITHUB_REPO?.trim() || 'shafiya-kashmiri-designs',
+    repo = process.env.GITHUB_REPO?.trim() || 'officialdeclassico-sys/shafiya-boutique-web',
     branch = process.env.GITHUB_BRANCH?.trim() || 'main',
     commitMessage = process.env.GITHUB_COMMIT_MESSAGE?.trim() ||
       'chore: sync Shafiya Kashmiri Designs project from Google AI Studio',

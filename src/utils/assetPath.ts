@@ -3,10 +3,10 @@
  *
  * Guarantees:
  * - External, data, and blob URLs remain intact.
- * - Any leading duplicate repository base prefixes (e.g. "shafiya-kashmiri-designs/") are cleanly stripped.
+ * - Any leading duplicate repository base prefixes (e.g. "shafiya-boutique-web/" or legacy "shafiya-kashmiri-designs/") are cleanly stripped.
  * - Produces consistent, idempotent URLs:
- *     getAssetUrl('assets/aistudio/plp_prod_1.png') -> '/shafiya-kashmiri-designs/assets/aistudio/plp_prod_1.png'
- *     getAssetUrl('/shafiya-kashmiri-designs/assets/aistudio/plp_prod_1.png') -> '/shafiya-kashmiri-designs/assets/aistudio/plp_prod_1.png'
+ *     getAssetUrl('assets/aistudio/plp_prod_1.png') -> '/shafiya-boutique-web/assets/aistudio/plp_prod_1.png'
+ *     getAssetUrl('/shafiya-boutique-web/assets/aistudio/plp_prod_1.png') -> '/shafiya-boutique-web/assets/aistudio/plp_prod_1.png'
  * - Provides a safe original product fallback if given null/undefined/empty string, preventing broken boxes.
  */
 export const DEFAULT_FALLBACK_IMAGE =
@@ -23,17 +23,24 @@ export function getAssetUrl(
     return target;
   }
 
-  // Get base URL configured in Vite (e.g. '/shafiya-kashmiri-designs/' or '/')
+  // Get base URL configured in Vite (e.g. '/shafiya-boutique-web/' or '/')
   const base = import.meta.env.BASE_URL || '/';
   const normalizedBase = base.endsWith('/') ? base : `${base}/`;
-  const repoName = 'shafiya-kashmiri-designs';
+  const repoPrefixes = ['shafiya-boutique-web', 'shafiya-kashmiri-designs'];
 
   // Strip leading slashes
   let clean = target.replace(/^\/+/, '');
 
   // Strip any duplicate or repeated repo name prefixes
-  while (clean.toLowerCase().startsWith(`${repoName}/`)) {
-    clean = clean.slice(repoName.length + 1).replace(/^\/+/, '');
+  let stripped = true;
+  while (stripped) {
+    stripped = false;
+    for (const prefix of repoPrefixes) {
+      if (clean.toLowerCase().startsWith(`${prefix}/`)) {
+        clean = clean.slice(prefix.length + 1).replace(/^\/+/, '');
+        stripped = true;
+      }
+    }
   }
 
   // If clean became empty, use fallback
