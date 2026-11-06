@@ -101,7 +101,7 @@ export const SignInModal: React.FC<SignInModalProps> = ({ isOpen, onClose }) => 
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@example.com"
-                className="w-full rounded-xl bg-white border border-[#e6dcd4] px-4 py-2.5 text-sm text-[#17171a] placeholder-[#a39c96] focus:outline-none focus:border-[#f83a6b] transition-colors"
+                className="w-full rounded-xl bg-white border border-[#e6dcd4] px-4 py-2.5 text-base sm:text-sm text-[#17171a] placeholder-[#a39c96] focus:outline-none focus:border-[#f83a6b] transition-colors"
               />
             </div>
 
@@ -119,7 +119,7 @@ export const SignInModal: React.FC<SignInModalProps> = ({ isOpen, onClose }) => 
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter your password"
-                className="w-full rounded-xl bg-white border border-[#e6dcd4] px-4 py-2.5 text-sm text-[#17171a] placeholder-[#a39c96] focus:outline-none focus:border-[#f83a6b] transition-colors"
+                className="w-full rounded-xl bg-white border border-[#e6dcd4] px-4 py-2.5 text-base sm:text-sm text-[#17171a] placeholder-[#a39c96] focus:outline-none focus:border-[#f83a6b] transition-colors"
               />
             </div>
 

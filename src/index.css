@@ -18,7 +18,19 @@
     font-family: var(--font-sans-ui);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
     overflow-x: clip;
+  }
+
+  /* Prevent mobile browsers (iOS Safari, Chrome on Android) from auto-zooming when focusing inputs */
+  @media screen and (max-width: 767px) {
+    input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+    textarea,
+    select,
+    [contenteditable="true"] {
+      font-size: 16px !important;
+    }
   }
 }
 

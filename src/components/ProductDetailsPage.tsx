@@ -2157,7 +2157,7 @@ export const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({
                   value={newReviewAuthor}
                   onChange={(e) => setNewReviewAuthor(e.target.value)}
                   placeholder="e.g. Ayesha M."
-                  className="w-full h-9 px-3 rounded-xl border border-[#dfd7ce] focus:outline-none focus:border-[#f81d5c]"
+                  className="w-full h-9 px-3 rounded-xl border border-[#dfd7ce] text-base sm:text-xs focus:outline-none focus:border-[#f81d5c]"
                 />
               </div>
 
@@ -2170,7 +2170,7 @@ export const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({
                   value={newReviewComment}
                   onChange={(e) => setNewReviewComment(e.target.value)}
                   placeholder="Share your thoughts on fabric, embroidery and fit..."
-                  className="w-full p-3 rounded-xl border border-[#dfd7ce] focus:outline-none focus:border-[#f81d5c]"
+                  className="w-full p-3 rounded-xl border border-[#dfd7ce] text-base sm:text-xs focus:outline-none focus:border-[#f81d5c]"
                 />
               </div>
 

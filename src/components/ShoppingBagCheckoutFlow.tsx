@@ -647,7 +647,7 @@ export const ShoppingBagCheckoutFlow: React.FC<
                               fullName: e.target.value,
                             })
                           }
-                          className="w-full h-10 px-3 rounded-xl border border-[#dfd7ce] text-xs text-[#141824] focus:outline-none focus:border-[#f81d5c]"
+                          className="w-full h-10 px-3 rounded-xl border border-[#dfd7ce] text-base sm:text-xs text-[#141824] focus:outline-none focus:border-[#f81d5c]"
                         />
                       </div>
                       <div>
@@ -663,7 +663,7 @@ export const ShoppingBagCheckoutFlow: React.FC<
                               phone: e.target.value,
                             })
                           }
-                          className="w-full h-10 px-3 rounded-xl border border-[#dfd7ce] text-xs text-[#141824] focus:outline-none focus:border-[#f81d5c]"
+                          className="w-full h-10 px-3 rounded-xl border border-[#dfd7ce] text-base sm:text-xs text-[#141824] focus:outline-none focus:border-[#f81d5c]"
                         />
                       </div>
                     </div>
@@ -681,7 +681,7 @@ export const ShoppingBagCheckoutFlow: React.FC<
                             email: e.target.value,
                           })
                         }
-                        className="w-full h-10 px-3 rounded-xl border border-[#dfd7ce] text-xs text-[#141824] focus:outline-none focus:border-[#f81d5c]"
+                        className="w-full h-10 px-3 rounded-xl border border-[#dfd7ce] text-base sm:text-xs text-[#141824] focus:outline-none focus:border-[#f81d5c]"
                       />
                     </div>
 
@@ -699,7 +699,7 @@ export const ShoppingBagCheckoutFlow: React.FC<
                               house: e.target.value,
                             })
                           }
-                          className="w-full h-10 px-3 rounded-xl border border-[#dfd7ce] text-xs text-[#141824] focus:outline-none focus:border-[#f81d5c]"
+                          className="w-full h-10 px-3 rounded-xl border border-[#dfd7ce] text-base sm:text-xs text-[#141824] focus:outline-none focus:border-[#f81d5c]"
                         />
                       </div>
                       <div>
@@ -715,7 +715,7 @@ export const ShoppingBagCheckoutFlow: React.FC<
                               street: e.target.value,
                             })
                           }
-                          className="w-full h-10 px-3 rounded-xl border border-[#dfd7ce] text-xs text-[#141824] focus:outline-none focus:border-[#f81d5c]"
+                          className="w-full h-10 px-3 rounded-xl border border-[#dfd7ce] text-base sm:text-xs text-[#141824] focus:outline-none focus:border-[#f81d5c]"
                         />
                       </div>
                     </div>
@@ -734,7 +734,7 @@ export const ShoppingBagCheckoutFlow: React.FC<
                               city: e.target.value,
                             })
                           }
-                          className="w-full h-10 px-3 rounded-xl border border-[#dfd7ce] text-xs text-[#141824] focus:outline-none focus:border-[#f81d5c]"
+                          className="w-full h-10 px-3 rounded-xl border border-[#dfd7ce] text-base sm:text-xs text-[#141824] focus:outline-none focus:border-[#f81d5c]"
                         />
                       </div>
                       <div>
@@ -750,7 +750,7 @@ export const ShoppingBagCheckoutFlow: React.FC<
                               state: e.target.value,
                             })
                           }
-                          className="w-full h-10 px-3 rounded-xl border border-[#dfd7ce] text-xs text-[#141824] focus:outline-none focus:border-[#f81d5c]"
+                          className="w-full h-10 px-3 rounded-xl border border-[#dfd7ce] text-base sm:text-xs text-[#141824] focus:outline-none focus:border-[#f81d5c]"
                         />
                       </div>
                       <div>
@@ -767,7 +767,7 @@ export const ShoppingBagCheckoutFlow: React.FC<
                               pinCode: e.target.value,
                             })
                           }
-                          className="w-full h-10 px-3 rounded-xl border border-[#dfd7ce] text-xs text-[#141824] focus:outline-none focus:border-[#f81d5c]"
+                          className="w-full h-10 px-3 rounded-xl border border-[#dfd7ce] text-base sm:text-xs text-[#141824] focus:outline-none focus:border-[#f81d5c]"
                         />
                       </div>
                     </div>

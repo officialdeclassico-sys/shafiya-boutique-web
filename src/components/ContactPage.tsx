@@ -642,7 +642,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                           }}
                           placeholder="Your name"
                           aria-invalid={Boolean(errors.fullName)}
-                          className={`w-full h-10 rounded-xl bg-[#f9f7f8] border px-3.5 text-xs sm:text-[13px] text-[#141824] placeholder-[#8f8a8e] focus:outline-none focus:bg-white transition-colors ${
+                          className={`w-full h-10 rounded-xl bg-[#f9f7f8] border px-3.5 text-base sm:text-[13px] text-[#141824] placeholder-[#8f8a8e] focus:outline-none focus:bg-white transition-colors ${
                             errors.fullName
                               ? 'border-[#e11d48] focus:border-[#e11d48]'
                               : 'border-[#e5dfe2] focus:border-[#ee1d5e]'
@@ -676,7 +676,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                           }}
                           placeholder="your@email.com"
                           aria-invalid={Boolean(errors.email)}
-                          className={`w-full h-10 rounded-xl bg-[#f9f7f8] border px-3.5 text-xs sm:text-[13px] text-[#141824] placeholder-[#8f8a8e] focus:outline-none focus:bg-white transition-colors ${
+                          className={`w-full h-10 rounded-xl bg-[#f9f7f8] border px-3.5 text-base sm:text-[13px] text-[#141824] placeholder-[#8f8a8e] focus:outline-none focus:bg-white transition-colors ${
                             errors.email
                               ? 'border-[#e11d48] focus:border-[#e11d48]'
                               : 'border-[#e5dfe2] focus:border-[#ee1d5e]'
@@ -712,7 +712,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                           }}
                           placeholder="+91 98765 43210"
                           aria-invalid={Boolean(errors.phone)}
-                          className={`w-full h-10 rounded-xl bg-[#f9f7f8] border px-3.5 text-xs sm:text-[13px] text-[#141824] placeholder-[#8f8a8e] focus:outline-none focus:bg-white transition-colors ${
+                          className={`w-full h-10 rounded-xl bg-[#f9f7f8] border px-3.5 text-base sm:text-[13px] text-[#141824] placeholder-[#8f8a8e] focus:outline-none focus:bg-white transition-colors ${
                             errors.phone
                               ? 'border-[#e11d48] focus:border-[#e11d48]'
                               : 'border-[#e5dfe2] focus:border-[#ee1d5e]'
@@ -738,7 +738,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                             id="enquiry-type"
                             value={enquiryType}
                             onChange={(e) => setEnquiryType(e.target.value)}
-                            className="w-full h-10 appearance-none rounded-xl bg-[#f9f7f8] border border-[#e5dfe2] pl-3.5 pr-9 text-xs sm:text-[13px] text-[#141824] focus:outline-none focus:bg-white focus:border-[#ee1d5e] transition-colors cursor-pointer"
+                            className="w-full h-10 appearance-none rounded-xl bg-[#f9f7f8] border border-[#e5dfe2] pl-3.5 pr-9 text-base sm:text-[13px] text-[#141824] focus:outline-none focus:bg-white focus:border-[#ee1d5e] transition-colors cursor-pointer"
                           >
                             <option value="">Select an option</option>
                             {ENQUIRY_TYPES.map((opt) => (
@@ -776,7 +776,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                         }}
                         placeholder="Tell us about your enquiry, custom design idea, product question or any other details..."
                         aria-invalid={Boolean(errors.message)}
-                        className={`w-full rounded-xl bg-[#f9f7f8] border p-3 text-xs sm:text-[13px] text-[#141824] placeholder-[#8f8a8e] focus:outline-none focus:bg-white transition-colors resize-y ${
+                        className={`w-full rounded-xl bg-[#f9f7f8] border p-3 text-base sm:text-[13px] text-[#141824] placeholder-[#8f8a8e] focus:outline-none focus:bg-white transition-colors resize-y ${
                           errors.message
                             ? 'border-[#e11d48] focus:border-[#e11d48]'
                             : 'border-[#e5dfe2] focus:border-[#ee1d5e]'

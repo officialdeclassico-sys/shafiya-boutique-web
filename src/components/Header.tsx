@@ -356,7 +356,7 @@ export const Header: React.FC<HeaderProps> = ({
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search for shawls, suits, pherans..."
                 aria-label="Search for shawls, suits, pherans"
-                className="w-[220px] xl:w-[324px] h-[44px] xl:h-[48px] pl-11 pr-9 rounded-full bg-[#f7f2ec]/90 hover:bg-[#f7f2ec] focus:bg-white text-[13px] xl:text-[13.5px] text-[#17171a] placeholder-[#a8a29d] border border-transparent focus:border-[#f83a6b]/40 shadow-[0_2px_10px_rgba(0,0,0,0.02)] focus:outline-none transition-all"
+                className="w-[220px] xl:w-[324px] h-[44px] xl:h-[48px] pl-11 pr-9 rounded-full bg-[#f7f2ec]/90 hover:bg-[#f7f2ec] focus:bg-white text-base lg:text-[13px] xl:text-[13.5px] text-[#17171a] placeholder-[#a8a29d] border border-transparent focus:border-[#f83a6b]/40 shadow-[0_2px_10px_rgba(0,0,0,0.02)] focus:outline-none transition-all"
               />
               {searchQuery && (
                 <button
@@ -705,7 +705,7 @@ export const Header: React.FC<HeaderProps> = ({
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search for shawls, suits, pherans..."
               aria-label="Search for shawls, suits, pherans"
-              className="flex-1 h-full pl-3 pr-3 bg-transparent text-[13.5px] text-[#17171a] placeholder-[#9a938d] focus:outline-none"
+              className="flex-1 h-full pl-3 pr-3 bg-transparent text-base sm:text-[13.5px] text-[#17171a] placeholder-[#9a938d] focus:outline-none"
             />
             {/* Vertical Hairline Separator + Close/Clear X Button matching Screen 3 */}
             <span
