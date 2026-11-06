@@ -423,14 +423,14 @@ export const ProductListingPage: React.FC<ProductListingPageProps> = ({
           </div>
 
           {/* Right Controls: Mobile Filter Button + Sort Dropdown + Grid/List View Toggle */}
-          <div className="flex items-center justify-between lg:justify-end gap-2">
+          <div className="flex items-center justify-between lg:justify-end gap-1.5 sm:gap-2">
             {/* Mobile Filter Modal Trigger (< lg) matching Screen 1 pink-outlined pill */}
             <button
               type="button"
               onClick={() => setMobileFilterOpen(true)}
-              className="lg:hidden inline-flex items-center gap-1.5 h-9 px-3.5 rounded-full bg-[#fff5f8] border border-[#f81d5c]/65 text-xs font-semibold text-[#f81d5c] shadow-2xs cursor-pointer shrink-0"
+              className="lg:hidden inline-flex items-center gap-1.5 h-9 px-3 sm:px-3.5 rounded-full bg-[#fff5f8] border border-[#f81d5c]/65 text-xs font-semibold text-[#f81d5c] shadow-2xs cursor-pointer shrink-0 whitespace-nowrap"
             >
-              <SlidersHorizontal className="w-3.5 h-3.5 text-[#f81d5c]" />
+              <SlidersHorizontal className="w-3.5 h-3.5 text-[#f81d5c] shrink-0" />
               <span>Filters</span>
               {activeFilterCount > 0 && (
                 <span className="min-w-[17px] h-[17px] px-1 rounded-full bg-[#f81d5c] text-white text-[10px] font-bold inline-flex items-center justify-center">
@@ -439,7 +439,7 @@ export const ProductListingPage: React.FC<ProductListingPageProps> = ({
               )}
             </button>
 
-            <div className="flex items-center gap-2.5">
+            <div className="flex items-center gap-1.5 sm:gap-2.5 min-w-0">
               {/* Sort By Dropdown */}
               <div className="relative">
                 <button
@@ -447,14 +447,14 @@ export const ProductListingPage: React.FC<ProductListingPageProps> = ({
                   onClick={() => setSortDropdownOpen((prev) => !prev)}
                   aria-expanded={sortDropdownOpen}
                   aria-haspopup="listbox"
-                  className="h-9 sm:h-10 px-3.5 rounded-xl bg-white border border-[#e6ded6] hover:border-[#d5cbc0] text-xs sm:text-[13px] text-[#17171a] inline-flex items-center gap-2 shadow-[0_1px_4px_rgba(0,0,0,0.02)] cursor-pointer"
+                  className="h-9 sm:h-10 px-2.5 sm:px-3.5 rounded-xl bg-white border border-[#e6ded6] hover:border-[#d5cbc0] text-[11px] sm:text-[13px] text-[#17171a] inline-flex items-center gap-1.5 sm:gap-2 shadow-[0_1px_4px_rgba(0,0,0,0.02)] cursor-pointer whitespace-nowrap"
                 >
-                  <span className="text-[#78726d]">Sort By</span>
-                  <span className="h-3.5 w-[1px] bg-[#e2dad1]" />
-                  <span className="font-semibold text-[#141416] min-w-[92px] text-left">
+                  <span className="text-[#78726d] whitespace-nowrap shrink-0">Sort By</span>
+                  <span className="h-3.5 w-[1px] bg-[#e2dad1] shrink-0" />
+                  <span className="font-semibold text-[#141416] sm:min-w-[92px] text-left whitespace-nowrap">
                     {sortBy}
                   </span>
-                  <ChevronDown className="w-3.5 h-3.5 text-[#57524e]" />
+                  <ChevronDown className="w-3.5 h-3.5 text-[#57524e] shrink-0" />
                 </button>
 
                 {sortDropdownOpen && (

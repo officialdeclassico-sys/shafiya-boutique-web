@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { Sparkles, Feather, Compass, ArrowRight } from 'lucide-react';
+import React from 'react';
 import { Header, NavItemKey } from './Header';
 import { Footer } from './Footer';
 import { BagItem } from '../data/heroSlides';
@@ -19,56 +18,167 @@ interface OurStoryPageProps {
   onToggleWishlistItem?: (id: string) => void;
 }
 
-const CRAFT_CHAPTERS = [
-  {
-    index: '01',
-    title: 'Sozni & Aari Floral Threadwork',
-    subtitle: 'GENERATIONS OF MASTER NEEDLEWORK',
-    body: 'Every Shafiya ensemble begins in the sun-drenched courtyards of Srinagar, where master artisans trace Chinar leaves, saffron blossoms, and badam motifs by hand before embroidering thousands of silk knots.',
-    highlight: 'Up to 320 artisan hours per heirloom shawl',
-  },
-  {
-    index: '02',
-    title: 'Pure Changthangi Pashmina & Mulberry Silk',
-    subtitle: 'FEATHERLIGHT VALLEY TEXTILES',
-    body: 'We source ethically combed Ladakhi Pashmina and breathable Kashmiri mulberry silk, creating drapes that feel weightless against the skin while holding luminous natural dyes.',
-    highlight: '100% hand-spun & loom-woven in Kashmir',
-  },
-  {
-    index: '03',
-    title: 'From Kashmir to Your Everyday Story',
-    subtitle: 'CONTEMPORARY SILHOUETTES',
-    body: 'Rooted in centuries-old Kashmiri royal silhouettes yet tailored for the modern woman — effortless pherans, fluid stoles, and statement ensembles designed to be lived in and loved.',
-    highlight: 'Bespoke tailoring & worldwide atelier delivery',
-  },
-];
+/**
+ * Reusable 5-petal Kashmiri Lotus outline icon matching the reference design
+ */
+const LotusOutlineIcon: React.FC<{ className?: string; strokeWidth?: number }> = ({
+  className = 'w-8 h-6 text-[#e5195e]',
+  strokeWidth = 2.1,
+}) => (
+  <svg
+    aria-hidden="true"
+    viewBox="0 0 64 42"
+    fill="none"
+    className={className}
+  >
+    {/* Center petal */}
+    <path
+      d="M32 4 C25 14, 24 26, 32 35 C40 26, 39 14, 32 4 Z"
+      stroke="currentColor"
+      strokeWidth={strokeWidth}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    {/* Left inner petal */}
+    <path
+      d="M27 11 C17 14, 14 25, 29 35"
+      stroke="currentColor"
+      strokeWidth={strokeWidth}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    {/* Right inner petal */}
+    <path
+      d="M37 11 C47 14, 50 25, 35 35"
+      stroke="currentColor"
+      strokeWidth={strokeWidth}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    {/* Left outer petal */}
+    <path
+      d="M19 20 C9 21, 6 29, 25 36"
+      stroke="currentColor"
+      strokeWidth={strokeWidth}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    {/* Right outer petal */}
+    <path
+      d="M45 20 C55 21, 58 29, 39 36"
+      stroke="currentColor"
+      strokeWidth={strokeWidth}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    {/* Subtle base curve */}
+    <path
+      d="M18 37 Q32 40 46 37"
+      stroke="currentColor"
+      strokeWidth={strokeWidth}
+      strokeLinecap="round"
+    />
+  </svg>
+);
 
-const EMBROIDERY_TRADITIONS = [
-  {
-    title: 'Hand-Knotted Floral Aari',
-    eyebrow: 'CHAIN-STITCH FLORAL RELIEF',
-    description:
-      'Worked with a fine hooked needle known as the aari, artisans create vibrant, dimensional blooms of rose pink, turquoise, and saffron yellow across soft Pashmina and silk bases.',
-    image: getAssetUrl('assets/aistudio/contact_embroidery_tall.png'),
-    bgColor: '#fdd0d3',
-  },
-  {
-    title: 'Fine Sozni Needlework',
-    eyebrow: 'SATIN-STITCH HEIRLOOM MOTIFS',
-    description:
-      'Delicate, reversible needlepoint inspired by Kashmir’s Chinar foliage and almond blossoms — so finely executed that the motif flows seamlessly across the drape.',
-    image: getAssetUrl('assets/aistudio/cat_1_shawls.png'),
-    bgColor: '#c0f2e9',
-  },
-  {
-    title: 'Contemporary Kashmiri Silhouettes',
-    eyebrow: 'HERITAGE REIMAGINED',
-    description:
-      'Traditional pherans, fluid stoles, and tailored suits balanced with modern proportions and pastel palettes for effortless everyday and festive elegance.',
-    image: getAssetUrl('assets/aistudio/cat_4_stoles.png'),
-    bgColor: '#fef1b9',
-  },
-];
+/**
+ * Pink outline tilted thread spool icon for "Authentic Kashmiri Textiles"
+ */
+const ThreadSpoolIcon: React.FC<{ className?: string }> = ({
+  className = 'w-12 h-12 text-[#e5195e]',
+}) => (
+  <svg
+    aria-hidden="true"
+    viewBox="0 0 56 56"
+    fill="none"
+    className={className}
+  >
+    <g transform="rotate(-24 28 28)">
+      {/* Top rim */}
+      <ellipse
+        cx="28"
+        cy="12"
+        rx="12"
+        ry="4.2"
+        stroke="currentColor"
+        strokeWidth="2.1"
+      />
+      <ellipse
+        cx="28"
+        cy="12"
+        rx="3.8"
+        ry="1.4"
+        stroke="currentColor"
+        strokeWidth="1.6"
+      />
+      {/* Spool body */}
+      <path
+        d="M18 14.5 L18 41.5 M38 14.5 L38 41.5"
+        stroke="currentColor"
+        strokeWidth="2.1"
+        strokeLinecap="round"
+      />
+      {/* Wrapped thread lines */}
+      <path
+        d="M18 20 Q28 23 38 19 M18 25.5 Q28 28.5 38 24.5 M18 31 Q28 34 38 30 M18 36.5 Q28 39.5 38 35.5"
+        stroke="currentColor"
+        strokeWidth="1.9"
+        strokeLinecap="round"
+      />
+      {/* Bottom rim */}
+      <path
+        d="M16 41.5 C16 44, 40 44, 40 41.5 C40 45.2, 16 45.2, 16 41.5 Z"
+        stroke="currentColor"
+        strokeWidth="2.1"
+        strokeLinejoin="round"
+      />
+    </g>
+  </svg>
+);
+
+/**
+ * Pink outline boutique mannequin / dress form icon for "Boutique Craftsmanship"
+ */
+const MannequinIcon: React.FC<{ className?: string }> = ({
+  className = 'w-12 h-12 text-[#e5195e]',
+}) => (
+  <svg
+    aria-hidden="true"
+    viewBox="0 0 56 56"
+    fill="none"
+    className={className}
+  >
+    {/* Neck finial */}
+    <path
+      d="M25 6 H31 M28 6 V9.5"
+      stroke="currentColor"
+      strokeWidth="2.1"
+      strokeLinecap="round"
+    />
+    {/* Dress form silhouette */}
+    <path
+      d="M23 9.5 L18 13.5 C19.5 18.5, 22.5 22, 22.5 26.5 C22.5 31, 18.5 36.5, 18.5 41.5 H37.5 C37.5 36.5, 33.5 31, 33.5 26.5 C33.5 22, 36.5 18.5, 38 13.5 L33 9.5 Q28 12.5 23 9.5 Z"
+      stroke="currentColor"
+      strokeWidth="2.1"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    {/* Waistline seam */}
+    <path
+      d="M22.5 26.5 Q28 28 33.5 26.5"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinecap="round"
+    />
+    {/* Stand pole & base */}
+    <path
+      d="M28 41.5 V49.5 M21 49.5 H35"
+      stroke="currentColor"
+      strokeWidth="2.1"
+      strokeLinecap="round"
+    />
+  </svg>
+);
 
 export const OurStoryPage: React.FC<OurStoryPageProps> = ({
   onOpenSignIn,
@@ -83,594 +193,321 @@ export const OurStoryPage: React.FC<OurStoryPageProps> = ({
   onToggleHeaderWishlist,
   onToggleWishlistItem,
 }) => {
-  const [activeChapter, setActiveChapter] = useState(0);
-
   return (
-    <div className="min-h-screen w-full bg-[#fcf8f3] flex flex-col justify-between overflow-x-hidden">
-      {/* =====================================================================
-          1. NEW FULL-VIEWPORT-WIDTH EDITORIAL "OUR STORY" HERO BANNER
-          ===================================================================== */}
-      <section
-        aria-labelledby="our-story-hero-heading"
-        className="relative w-full bg-[#fcf8f3] overflow-hidden select-none border-b border-[#f0e6dc]"
-      >
-        {/* Shared Website Header Integrated into Top of Hero */}
-        <div className="relative z-30 w-full">
-          <Header
-            activePage="Our Story"
-            onNavigate={onNavigate}
-            onOpenSignIn={onOpenSignIn}
-            onSelectCategory={onSelectCategory}
-            bagItems={bagItems}
-            onAddSampleBagItem={onAddSampleBagItem}
-            onRemoveBagItem={onRemoveBagItem}
-            onOpenBagPage={onOpenBagPage}
-            wishlistIds={wishlistIds}
-            wishlistActive={wishlistActive}
-            onToggleHeaderWishlist={onToggleHeaderWishlist}
-            onToggleWishlistItem={onToggleWishlistItem}
-          />
-        </div>
+    <div className="min-h-screen w-full bg-white flex flex-col justify-between overflow-x-hidden select-none">
+      {/* Shared Website Header */}
+      <div className="w-full bg-[#fcf8f3] border-b border-[#f1e9e0]">
+        <Header
+          activePage="Our Story"
+          onNavigate={onNavigate}
+          onOpenSignIn={onOpenSignIn}
+          onSelectCategory={onSelectCategory}
+          bagItems={bagItems}
+          onAddSampleBagItem={onAddSampleBagItem}
+          onRemoveBagItem={onRemoveBagItem}
+          onOpenBagPage={onOpenBagPage}
+          wishlistIds={wishlistIds}
+          wishlistActive={wishlistActive}
+          onToggleHeaderWishlist={onToggleHeaderWishlist}
+          onToggleWishlistItem={onToggleWishlistItem}
+        />
+      </div>
 
-        {/* MOBILE & TABLET COMPOSITION (< lg) — Compact Horizontal Landscape Banner */}
-        <div className="lg:hidden relative w-full aspect-[16/6.2] sm:aspect-[16/5.5] md:aspect-[1312/472] max-h-[380px] overflow-hidden bg-[#fcf8f3] select-none">
+      {/* Main Our Story Content Wrapper */}
+      <div className="w-full max-w-[2560px] mx-auto bg-white">
+        {/* ===================================================================
+            PART A — TOP SECTION: OUR STORY HERO BANNER
+            - Replicates reference top section background, cherry blossoms,
+              pink wave graphics, typography, and right-side female model.
+            - Explicitly omits the small "OUR STORY" eyebrow heading above
+              the main headline as requested.
+            =================================================================== */}
+        <section
+          aria-labelledby="our-story-hero-heading"
+          className="relative w-full aspect-[1115/446] overflow-hidden bg-[#fdf5f7]"
+        >
+          {/* Dedicated Our Story Hero Background Asset */}
           <img
-            src={getAssetUrl('assets/aistudio/contact_hero_visual.png')}
-            alt="Kashmiri fashion model wearing embroidered floral attire"
+            src={getAssetUrl('assets/aistudio/our_story_hero_bg.png')}
+            alt="Kashmiri woman wearing traditional floral embroidered shawl and jhumka earrings surrounded by pink blossoms"
             referrerPolicy="no-referrer"
-            className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none select-none"
+            className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
           />
-          <div className="absolute left-[4.8%] top-[12%] sm:top-[16%] z-20 w-[52%] sm:w-[42%] pointer-events-auto">
-            <p className="font-ui text-[clamp(6.5px,1.8vw,11.5px)] font-semibold uppercase tracking-[0.24em] text-[#f42a60] leading-[1.3]">
-              THE ART OF KASHMIR · OUR STORY
+
+          {/* Left-Side Hero Typography Container (begins directly with Main Headline, no "OUR STORY" eyebrow) */}
+          <div className="relative z-10 w-[59%] h-full flex flex-col items-center justify-center text-center pl-[5.5%] pr-[2%] pb-[2.5%]">
+            <h1
+              id="our-story-hero-heading"
+              className="font-editorial text-[clamp(15px,3.75vw,76px)] font-normal text-[#121214] leading-[1.12] tracking-[-0.01em]"
+            >
+              <span className="block whitespace-nowrap">
+                From Kashmir&rsquo;s Heritage
+              </span>
+              <span className="block whitespace-nowrap mt-[0.15vw]">
+                <span>to </span>
+                <span className="font-script text-[#e5195e] text-[1.34em] leading-none align-baseline">
+                  Your Wardrobe
+                </span>
+              </span>
+            </h1>
+
+            <p className="mt-[1.25vw] font-ui text-[clamp(7.5px,1.28vw,25px)] font-medium text-[#1b1a1c] leading-[1.46] tracking-[0.005em]">
+              <span className="block whitespace-nowrap">
+                A boutique rooted in Kashmir&rsquo;s rich textile legacy,
+              </span>
+              <span className="block whitespace-nowrap">
+                where timeless craftsmanship meets
+              </span>
+              <span className="block whitespace-nowrap">
+                contemporary elegance.
+              </span>
             </p>
-            <div className="relative mt-[0.5vw]">
-              <h1
-                id="our-story-hero-heading"
-                className="font-editorial text-[clamp(18px,4.8vw,42px)] font-normal text-[#141416] leading-[0.96] tracking-[-0.02em]"
-              >
-                A Legacy Woven With Love
-              </h1>
-              <p className="font-script text-[#f82a62] text-[clamp(16px,4.2vw,36px)] leading-none block -rotate-2 mt-1">
-                From Kashmir, With Grace
-              </p>
-            </div>
-            <p className="mt-[0.5vw] font-ui text-[clamp(7px,1.5vw,11.5px)] font-normal text-[#262423] leading-[1.35] line-clamp-2 max-w-[260px]">
-              Rooted in the timeless artistry of Kashmir, Shafiya brings generations of textile heritage.
-            </p>
           </div>
-        </div>
+        </section>
 
-        {/* DESKTOP COMPOSITION (lg and up) */}
-        <div className="hidden lg:block relative">
-        {/* Far-Left Decorative Botanical Line-Art Flowers */}
-        <img
-          src={getAssetUrl('assets/aistudio/contact_hero_left_flowers.png')}
-          alt=""
-          aria-hidden="true"
-          referrerPolicy="no-referrer"
-          className="absolute left-0 top-[15%] w-16 xl:w-20 h-auto object-contain pointer-events-none select-none z-10"
-        />
+        {/* White Horizontal Separator Bar */}
+        <div aria-hidden="true" className="w-full h-[clamp(4px,0.75vw,14px)] bg-white" />
 
-        {/* Soft Ambient Pastel Watercolor Brush Accents Across Full Width */}
-        <div
-          aria-hidden="true"
-          className="absolute -left-16 bottom-0 w-72 h-72 rounded-full bg-[#fdd0d3]/55 blur-3xl pointer-events-none"
-        />
-        <div
-          aria-hidden="true"
-          className="absolute left-[42%] top-8 w-80 h-80 rounded-full bg-[#b5f2ec]/45 blur-3xl pointer-events-none"
-        />
-        <div
-          aria-hidden="true"
-          className="absolute right-[8%] bottom-6 w-80 h-80 rounded-full bg-[#fef1b9]/55 blur-3xl pointer-events-none"
-        />
-
-        {/* Full-Width Hero Composition Grid */}
-        <div className="relative z-20 w-full px-5 sm:px-8 lg:pl-[5.35%] lg:pr-[2.2%] pt-4 sm:pt-6 lg:pt-4 pb-10 lg:pb-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-center">
-            {/* LEFT SIDE: Eyebrow, Main Serif Headline, Pink Script Accent, Supporting Description & Heritage Highlights */}
-            <div className="lg:col-span-5 relative z-20">
-              {/* Eyebrow */}
-              <p className="font-ui text-[11px] sm:text-xs xl:text-[13.5px] font-semibold uppercase tracking-[0.28em] text-[#f42a60] leading-relaxed">
-                THE ART OF KASHMIR · OUR STORY
-              </p>
-
-              {/* Main Editorial Serif Headline */}
-              <h1
-                id="our-story-hero-heading"
-                className="mt-2 font-editorial text-5xl sm:text-6xl lg:text-[clamp(48px,4.55vw,86px)] font-normal text-[#141416] leading-[0.97] tracking-[-0.02em]"
-              >
-                <span className="block">A Legacy Woven</span>
-                <span className="block">With Love</span>
-              </h1>
-
-              {/* Pink Handwritten Script Accent */}
-              <p className="mt-2 font-script text-4xl sm:text-5xl lg:text-[clamp(38px,3.35vw,62px)] text-[#f82a62] leading-[1.08] -rotate-[2deg] origin-left">
-                From Kashmir, With Grace
-              </p>
-
-              {/* Supporting Brand Introduction */}
-              <p className="mt-4 font-ui text-sm sm:text-base lg:text-[clamp(13.5px,0.98vw,17.5px)] font-normal text-[#262423] leading-[1.65] max-w-xl">
-                Rooted in the timeless artistry of Kashmir, Shafiya brings
-                generations of textile heritage into the world of contemporary
-                fashion.
-              </p>
-
-              {/* Three Editorial Heritage Highlights */}
-              <div className="mt-7 grid grid-cols-3 gap-3 sm:gap-5 pt-2 border-t border-[#eadfd5]">
-                <div className="space-y-1">
-                  <div className="text-[#f82a62]">
-                    <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 stroke-[1.8]" />
-                  </div>
-                  <h2 className="font-ui text-xs sm:text-[13px] font-bold text-[#141824] leading-snug">
-                    Master Needlework
-                  </h2>
-                  <p className="font-ui text-[11px] sm:text-xs text-[#686b75] leading-snug">
-                    Intricate Sozni &amp; floral Aari embroidery
-                  </p>
-                </div>
-
-                <div className="space-y-1">
-                  <div className="text-[#f82a62]">
-                    <Feather className="w-5 h-5 sm:w-6 sm:h-6 stroke-[1.8]" />
-                  </div>
-                  <h2 className="font-ui text-xs sm:text-[13px] font-bold text-[#141824] leading-snug">
-                    Valley Textiles
-                  </h2>
-                  <p className="font-ui text-[11px] sm:text-xs text-[#686b75] leading-snug">
-                    Pure Pashmina &amp; Kashmiri mulberry silk
-                  </p>
-                </div>
-
-                <div className="space-y-1">
-                  <div className="text-[#f82a62]">
-                    <Compass className="w-5 h-5 sm:w-6 sm:h-6 stroke-[1.8]" />
-                  </div>
-                  <h2 className="font-ui text-xs sm:text-[13px] font-bold text-[#141824] leading-snug">
-                    Modern Grace
-                  </h2>
-                  <p className="font-ui text-[11px] sm:text-xs text-[#686b75] leading-snug">
-                    Contemporary silhouettes for everyday wear
-                  </p>
-                </div>
-              </div>
-
-              {/* Bottom-Left Curated Signature Row matching Homepage Brand Language */}
-              <div className="mt-7 flex items-center gap-4">
-                <div className="flex items-center -space-x-2.5">
-                  {[
-                    getAssetUrl('assets/aistudio/avatar_1.png'),
-                    getAssetUrl('assets/aistudio/avatar_2.png'),
-                    getAssetUrl('assets/aistudio/avatar_3.png'),
-                  ].map((src, idx) => (
-                    <img
-                      key={src}
-                      src={src}
-                      alt={`Kashmiri couture look ${idx + 1}`}
-                      referrerPolicy="no-referrer"
-                      className="w-11 h-11 sm:w-12 sm:h-12 rounded-full object-cover border-2 border-white shadow-xs"
-                    />
-                  ))}
-                </div>
-                <div className="font-ui text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.22em] text-[#222020] leading-[1.75]">
-                  <span className="block">WHERE VALLEY HERITAGE</span>
-                  <span className="block text-[#f82a62]">
-                    MEETS MODERN GRACE
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* CENTRE / RIGHT SIDE: Full-Width Kashmiri Fashion Model, Dal Lake & Mountains, Overlapping Embroidery Cards & Pastel Brush Strokes */}
-            <div className="lg:col-span-7 relative">
-              <div className="relative w-full">
-                {/* Decorative Pastel Brush Stroke Shapes Behind Composition */}
-                <div
-                  aria-hidden="true"
-                  className="hidden sm:block absolute -top-4 left-[12%] w-64 h-64 rounded-full bg-[#b5f2ec]/65 -z-10"
-                />
-                <div
-                  aria-hidden="true"
-                  className="hidden sm:block absolute -bottom-5 left-[4%] w-72 h-48 rounded-[42px] bg-[#fef1b9]/85 -rotate-3 -z-10"
-                />
-
-                {/* Main Editorial Panorama: Kashmiri Fashion Model in Embroidered Attire + Dal Lake Houseboats + Snow-Capped Mountains + Pastel Brush Strokes + Handwritten Script */}
-                <div className="relative w-full rounded-[28px] lg:rounded-[34px] overflow-hidden">
-                  <img
-                    src={getAssetUrl('assets/aistudio/contact_hero_visual.png')}
-                    alt="Kashmiri fashion model wearing richly embroidered floral attire with scenic Dal Lake houseboats and snow-capped Himalayan mountains"
-                    referrerPolicy="no-referrer"
-                    className="w-full h-auto object-cover select-none"
-                  />
-                </div>
-
-                {/* Overlapping Bottom-Left Editorial Craft Card: Hand-Knotted Floral Aari Detail */}
-                <div className="hidden sm:flex items-center gap-3.5 absolute -bottom-5 left-3 xl:left-6 z-20 rounded-2xl bg-[#fcf9f5]/95 backdrop-blur-xs border-2 border-white p-2.5 pr-5 shadow-[0_12px_32px_rgba(24,24,27,0.12)]">
-                  <img
-                    src={getAssetUrl('assets/aistudio/contact_embroidery_tall.png')}
-                    alt="Macro detail of hand-knotted Kashmiri floral Aari embroidery"
-                    referrerPolicy="no-referrer"
-                    className="w-14 h-16 xl:w-16 xl:h-20 rounded-xl object-cover shrink-0"
-                  />
-                  <div>
-                    <p className="font-ui text-[9.5px] font-bold uppercase tracking-[0.2em] text-[#f82a62]">
-                      ARTISAN NEEDLEWORK
-                    </p>
-                    <p className="font-editorial text-lg xl:text-xl font-bold text-[#141416] leading-tight">
-                      Floral Aari &amp; Sozni
-                    </p>
-                    <p className="font-ui text-[11px] text-[#57524e]">
-                      Handcrafted in Srinagar, Kashmir
-                    </p>
-                  </div>
-                </div>
-
-                {/* Overlapping Top-Left Editorial Silhouette Card: Contemporary Kashmiri Pheran */}
-                <div className="hidden xl:flex items-center gap-3 absolute -top-3 left-4 z-20 rounded-2xl bg-[#fcf9f5]/95 backdrop-blur-xs border-2 border-white p-2 pr-4 shadow-[0_10px_28px_rgba(24,24,27,0.1)]">
-                  <img
-                    src={getAssetUrl('assets/aistudio/cat_3_pherans.png')}
-                    alt="Contemporary Kashmiri embroidered pheran silhouette"
-                    referrerPolicy="no-referrer"
-                    className="w-12 h-12 rounded-xl object-cover shrink-0"
-                  />
-                  <div>
-                    <p className="font-editorial text-base font-bold text-[#141416] leading-tight">
-                      Valley Couture
-                    </p>
-                    <p className="font-ui text-[10px] font-semibold uppercase tracking-[0.16em] text-[#57524e]">
-                      SHAWLS · SUITS · PHERANS
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        </div>
-      </section>
-
-      {/* =====================================================================
-          2. PRESERVED & IMPROVED FULL-WIDTH STORYTELLING SECTION:
-             "Where Valley Heritage Meets Modern Grace"
-          ===================================================================== */}
-      <section
-        id="our-story"
-        aria-labelledby="art-of-kashmir-heading"
-        className="relative w-full py-14 sm:py-18 lg:py-22 px-4 sm:px-6 lg:px-[3.5%] xl:px-[4%]"
-      >
-        {/* Decorative Right-Edge Floral Line Illustration */}
-        <img
-          src={getAssetUrl('assets/aistudio/collections_flower_right.png')}
-          alt=""
-          aria-hidden="true"
-          referrerPolicy="no-referrer"
-          className="hidden lg:block absolute top-6 right-0 w-44 xl:w-56 h-auto object-contain pointer-events-none select-none opacity-90"
-        />
-
-        <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 xl:gap-16 items-center">
-          {/* Left Visual Collage: The Art of Kashmir & Valley Landscape */}
-          <div className="lg:col-span-6 relative">
-            {/* Layered Pastel Organic Backdrop Shapes matching Hero Language */}
-            <div
-              aria-hidden="true"
-              className="absolute -top-6 -left-6 w-72 h-72 rounded-full bg-[#fdd0d3] opacity-75 -z-10"
-            />
-            <div
-              aria-hidden="true"
-              className="absolute -bottom-6 right-4 w-80 h-60 rounded-[48px] bg-[#fef1b9] rotate-3 opacity-85 -z-10"
-            />
-            <div
-              aria-hidden="true"
-              className="absolute top-12 right-8 w-56 h-56 rounded-full bg-[#c0f2e9] opacity-70 -z-10"
-            />
-
-            <div className="grid grid-cols-12 gap-4 sm:gap-5 items-center">
-              {/* Primary Embroidery Close-up Card */}
-              <div className="col-span-7 rounded-[28px] overflow-hidden shadow-lg border-4 border-white bg-[#fcf8f3]">
-                <img
-                  src={getAssetUrl('assets/aistudio/collage_embroidery.png')}
-                  alt="Intricate Kashmiri floral Aari and Sozni hand embroidery"
-                  referrerPolicy="no-referrer"
-                  className="w-full h-[340px] sm:h-[440px] xl:h-[480px] object-cover"
-                />
-                <div className="p-4 sm:p-5 bg-[#fdd0d3]/65">
-                  <p className="font-editorial text-xl sm:text-2xl font-bold text-[#141416]">
-                    Hand-Knotted Floral Aari
-                  </p>
-                  <p className="font-ui text-[10.5px] font-semibold uppercase tracking-[0.2em] text-[#3a3330] mt-0.5">
-                    ARTISAN ATELIER · SRINAGAR
-                  </p>
-                </div>
-              </div>
-
-              {/* Right Column: Dal Lake Landscape + Handwritten Quote Card */}
-              <div className="col-span-5 space-y-4 sm:space-y-5">
-                <div className="rounded-[26px] overflow-hidden shadow-md border-4 border-white bg-[#fcf8f3]">
-                  <img
-                    src={getAssetUrl('assets/aistudio/collage_kashmir.png')}
-                    alt="Dal Lake houseboats and snow-capped Zabarwan mountains in Kashmir"
-                    referrerPolicy="no-referrer"
-                    className="w-full h-52 sm:h-64 xl:h-72 object-cover"
-                  />
-                </div>
-
-                <div className="rounded-[26px] bg-[#fef1b9] p-5 sm:p-6 border border-[#f5e49c] shadow-xs">
-                  <p className="font-handwritten text-2xl sm:text-3xl xl:text-4xl text-[#17171a] leading-tight">
-                    &ldquo;Threads of a Brighter Tomorrow&rdquo;
-                  </p>
-                  <p className="font-ui text-[10.5px] font-semibold uppercase tracking-[0.22em] text-[#4a4542] mt-2">
-                    FROM KASHMIR TO YOU
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Editorial Storytelling Content */}
-          <div className="lg:col-span-6 space-y-6">
-            <div>
-              <p className="font-ui text-[11px] sm:text-xs font-semibold uppercase tracking-[0.28em] text-[#f43f70]">
-                THE ART OF KASHMIR · OUR STORY
-              </p>
-              <div className="relative mt-2">
-                <h2
-                  id="art-of-kashmir-heading"
-                  className="font-editorial text-4xl sm:text-5xl xl:text-[58px] font-normal text-[#141416] leading-[1.03]"
-                >
-                  Where Valley Heritage Meets Modern Grace
-                </h2>
-              </div>
-              <p className="font-ui text-sm sm:text-base xl:text-[17px] text-[#2c2826] leading-relaxed mt-4">
-                Born from the tranquil waters of Dal Lake and the vibrant
-                gardens of Nishat, Shafiya celebrates the living legacy of
-                Kashmiri textile artistry — preserving centuries-old needlework
-                in joyful, contemporary silhouettes.
-              </p>
-            </div>
-
-            {/* Interactive Craftsmanship Chapters */}
-            <div className="space-y-3.5 pt-2">
-              {CRAFT_CHAPTERS.map((chap, idx) => {
-                const isOpen = activeChapter === idx;
-                return (
-                  <div
-                    key={chap.index}
-                    className={`rounded-2xl transition-all duration-200 border ${
-                      isOpen
-                        ? 'bg-white border-[#f4d4dc] shadow-sm p-5 sm:p-6'
-                        : 'bg-[#f7f1ea]/70 border-transparent hover:bg-[#f7f1ea] p-4 sm:p-5'
-                    }`}
-                  >
-                    <button
-                      type="button"
-                      onClick={() => setActiveChapter(idx)}
-                      aria-expanded={isOpen}
-                      className="w-full text-left flex items-center justify-between gap-4 cursor-pointer"
-                    >
-                      <div className="flex items-baseline gap-3">
-                        <span className="font-ui text-xs sm:text-sm font-bold text-[#f83a6b] tabular-nums">
-                          {chap.index}.
-                        </span>
-                        <div>
-                          <h3 className="font-editorial text-xl sm:text-2xl xl:text-[26px] font-bold text-[#141416]">
-                            {chap.title}
-                          </h3>
-                          <p className="font-ui text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.2em] text-[#736b65]">
-                            {chap.subtitle}
-                          </p>
-                        </div>
-                      </div>
-                    </button>
-
-                    {isOpen && (
-                      <div className="mt-3 pl-7 space-y-2">
-                        <p className="font-ui text-xs sm:text-sm xl:text-[15px] text-[#3a3532] leading-relaxed">
-                          {chap.body}
-                        </p>
-                        <p className="font-ui text-xs sm:text-sm font-semibold text-[#f83a6b]">
-                          {chap.highlight}
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-
-            <div className="pt-2 flex flex-wrap items-center gap-4">
-              <button
-                type="button"
-                onClick={() => onNavigate('Collections')}
-                className="px-6 py-3.5 rounded-full bg-[#17171a] hover:bg-[#2c2a29] text-white text-xs sm:text-sm font-medium transition-colors cursor-pointer"
-              >
-                Explore Our Collections
-              </button>
-              <button
-                type="button"
-                onClick={() => onNavigate('Contact')}
-                className="px-6 py-3.5 rounded-full bg-[#f83a6b] hover:bg-[#e02858] text-white text-xs sm:text-sm font-medium transition-colors shadow-xs cursor-pointer"
-              >
-                Enquire About Custom Designs
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* =====================================================================
-          3. FULL-WIDTH EDITORIAL SECTION: THE ART OF KASHMIRI EMBROIDERY
-          ===================================================================== */}
-      <section
-        aria-labelledby="art-of-embroidery-heading"
-        className="relative w-full py-14 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-[3.5%] xl:px-[4%] bg-[#fcfaf6] border-t border-[#f0e6dc] overflow-hidden"
-      >
-        <img
-          src={getAssetUrl('assets/aistudio/collections_flower_left.png')}
-          alt=""
-          aria-hidden="true"
-          referrerPolicy="no-referrer"
-          className="hidden sm:block absolute top-0 left-0 w-40 lg:w-52 h-auto object-contain pointer-events-none select-none opacity-85"
-        />
-
-        <div className="relative z-10 text-center max-w-3xl mx-auto mb-10 sm:mb-12">
-          <p className="font-ui text-[11px] sm:text-xs font-semibold uppercase tracking-[0.28em] text-[#f43f70] mb-1.5">
-            GENERATIONS OF CRAFTSMANSHIP
-          </p>
-          <h2
-            id="art-of-embroidery-heading"
-            className="font-editorial text-4xl sm:text-5xl lg:text-[54px] font-normal text-[#141416] leading-tight"
+        {/* ===================================================================
+            PART B — SECTION 1: CRAFTSMANSHIP IMAGE STRIP
+            - Three side-by-side visual panels with diagonal white separators:
+              1. Hand embroidery
+              2. Machine embroidery
+              3. Boutique craftsmanship
+            =================================================================== */}
+        <section
+          aria-label="Kashmiri Craftsmanship Visual Strip"
+          className="relative w-full aspect-[1115/247] bg-white overflow-hidden"
+        >
+          {/* Panel 1: Hand Embroidery (Left) */}
+          <div
+            style={{
+              clipPath: 'polygon(0% 0%, 35.43% 0%, 27.53% 100%, 0% 100%)',
+            }}
+            className="absolute inset-y-0 left-0 w-full h-full overflow-hidden"
           >
-            The Art of Kashmiri Embroidery
-          </h2>
-          <span
+            <img
+              src={getAssetUrl('assets/aistudio/our_story_strip_1_hand.png')}
+              alt="Close-up of a master Kashmiri artisan creating floral embroidery by hand"
+              referrerPolicy="no-referrer"
+              className="absolute inset-y-0 left-0 w-[35.88%] h-full object-cover object-left"
+            />
+          </div>
+
+          {/* Panel 2: Machine Embroidery (Center) */}
+          <div
+            style={{
+              clipPath: 'polygon(35.96% 0%, 72.29% 0%, 64.39% 100%, 28.07% 100%)',
+            }}
+            className="absolute inset-y-0 left-0 w-full h-full overflow-hidden"
+          >
+            <img
+              src={getAssetUrl('assets/aistudio/our_story_strip_2_machine.png')}
+              alt="Kashmiri artisan operating a precision embroidery machine"
+              referrerPolicy="no-referrer"
+              className="absolute inset-y-0 left-[27.26%] w-[45.38%] h-full object-cover object-center"
+            />
+          </div>
+
+          {/* Panel 3: Boutique Craftsmanship (Right) */}
+          <div
+            style={{
+              clipPath: 'polygon(72.83% 0%, 100% 0%, 100% 100%, 64.93% 100%)',
+            }}
+            className="absolute inset-y-0 left-0 w-full h-full overflow-hidden"
+          >
+            <img
+              src={getAssetUrl('assets/aistudio/our_story_strip_3_boutique.png')}
+              alt="Boutique designer arranging a handcrafted Kashmiri embroidered ensemble on a mannequin"
+              referrerPolicy="no-referrer"
+              className="absolute inset-y-0 left-[64.13%] w-[35.87%] h-full object-cover object-right"
+            />
+          </div>
+        </section>
+
+        {/* White Horizontal Separator Bar */}
+        <div aria-hidden="true" className="w-full h-[clamp(3px,0.55vw,11px)] bg-white" />
+
+        {/* ===================================================================
+            PART B — SECTION 2: OUR CRAFT
+            - Three horizontally aligned columns with pink outline icons,
+              editorial serif headings, descriptions, vertical pink dividers,
+              and pink wave decorations.
+            =================================================================== */}
+        <section
+          aria-labelledby="our-craft-heading"
+          className="relative w-full aspect-[1115/267] overflow-hidden bg-[#fdeef2]"
+        >
+          {/* Dedicated Our Craft Background with Blush Glow & Bottom Pink Silk Waves */}
+          <img
+            src={getAssetUrl('assets/aistudio/our_story_craft_bg.png')}
+            alt=""
             aria-hidden="true"
-            className="block w-12 h-[1.5px] bg-[#1e1e22] mx-auto mt-3 mb-3.5"
+            referrerPolicy="no-referrer"
+            className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
           />
-          <p className="font-ui text-xs sm:text-sm lg:text-[15px] text-[#3a3532] leading-relaxed">
-            Every stitch carries the poetry of the valley — from vibrant floral
-            Aari relief work to whisper-fine Sozni needlepoint and contemporary
-            Kashmiri tailoring.
-          </p>
-        </div>
 
-        {/* Full-Width 3-Column Craftsmanship Showcase */}
-        <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-6 xl:gap-8">
-          {EMBROIDERY_TRADITIONS.map((item) => (
-            <article
-              key={item.title}
-              className="rounded-[26px] overflow-hidden bg-white border border-[#efe6dd] shadow-[0_6px_24px_rgba(24,24,27,0.04)] flex flex-col"
-            >
-              <div className="relative aspect-[16/11] w-full overflow-hidden bg-[#f4ede6]">
-                <img
-                  src={getAssetUrl(item.image)}
-                  alt={item.title}
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover object-center"
+          <div className="relative z-10 w-full h-full flex flex-col items-center justify-start pt-[2.15%] px-[3.5%]">
+            {/* Top Centered Heading: — OUR CRAFT — */}
+            <div className="flex items-center justify-center gap-[1.8vw] w-full">
+              <span
+                aria-hidden="true"
+                className="h-[1.5px] w-[clamp(28px,7.8vw,150px)] bg-gradient-to-r from-transparent via-[#ec467d] to-[#e5195e]"
+              />
+              <h2
+                id="our-craft-heading"
+                className="font-ui text-[clamp(9px,1.62vw,32px)] font-bold uppercase tracking-[0.26em] text-[#e5195e] leading-none whitespace-nowrap"
+              >
+                OUR CRAFT
+              </h2>
+              <span
+                aria-hidden="true"
+                className="h-[1.5px] w-[clamp(28px,7.8vw,150px)] bg-gradient-to-l from-transparent via-[#ec467d] to-[#e5195e]"
+              />
+            </div>
+
+            {/* Three Horizontally Aligned Craft Columns */}
+            <div className="mt-[1.4vw] w-full grid grid-cols-[1fr_auto_1fr_auto_1fr] items-center">
+              {/* Column 1: Handcrafted Details */}
+              <div className="flex flex-col items-center text-center px-[1vw]">
+                <LotusOutlineIcon
+                  className="w-[clamp(24px,6.4vw,126px)] h-[clamp(16px,4.2vw,82px)] text-[#e5195e]"
+                  strokeWidth={2.2}
                 />
+                <h3 className="mt-[0.65vw] font-editorial text-[clamp(9.5px,1.78vw,35px)] font-bold text-[#121214] leading-[1.15] whitespace-nowrap">
+                  Handcrafted Details
+                </h3>
+                <p className="mt-[0.35vw] font-ui text-[clamp(6.5px,1.12vw,22px)] font-medium text-[#1b1a1c] leading-[1.35] whitespace-nowrap">
+                  Intricate embroidery by skilled artisans
+                </p>
               </div>
+
+              {/* Vertical Pink Divider 1 */}
               <div
-                style={{ backgroundColor: `${item.bgColor}65` }}
-                className="p-6 sm:p-7 xl:p-8 flex-1 flex flex-col justify-between"
-              >
-                <div>
-                  <p className="font-ui text-[10.5px] font-semibold uppercase tracking-[0.22em] text-[#f42a60]">
-                    {item.eyebrow}
-                  </p>
-                  <h3 className="font-editorial text-2xl sm:text-3xl font-bold text-[#141416] mt-1.5">
-                    {item.title}
-                  </h3>
-                  <p className="font-ui text-xs sm:text-sm text-[#373a47] leading-relaxed mt-2.5">
-                    {item.description}
-                  </p>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
+                aria-hidden="true"
+                className="w-[1.5px] h-[clamp(24px,4.8vw,94px)] bg-gradient-to-b from-transparent via-[#f04f84] to-transparent self-end mb-[0.4vw]"
+              />
 
-      {/* =====================================================================
-          4. FULL-WIDTH EDITORIAL SECTION: OUR DESIGN PHILOSOPHY
-          ===================================================================== */}
-      <section
-        aria-labelledby="design-philosophy-heading"
-        className="relative w-full py-14 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-[3.5%] xl:px-[4%] bg-[#fcf8f3] border-t border-[#f0e6dc]"
-      >
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-12 items-center">
-          {/* Left Editorial Text Column */}
-          <div className="lg:col-span-5 space-y-5">
-            <p className="font-ui text-[11px] sm:text-xs font-semibold uppercase tracking-[0.28em] text-[#f43f70]">
-              OUR DESIGN PHILOSOPHY
-            </p>
-            <h2
-              id="design-philosophy-heading"
-              className="font-editorial text-4xl sm:text-5xl xl:text-[52px] font-normal text-[#141416] leading-[1.04]"
+              {/* Column 2: Authentic Kashmiri Textiles */}
+              <div className="flex flex-col items-center text-center px-[1vw]">
+                <ThreadSpoolIcon className="w-[clamp(22px,4.4vw,86px)] h-[clamp(22px,4.4vw,86px)] text-[#e5195e]" />
+                <h3 className="mt-[0.5vw] font-editorial text-[clamp(9.5px,1.78vw,35px)] font-bold text-[#121214] leading-[1.15] whitespace-nowrap">
+                  Authentic Kashmiri Textiles
+                </h3>
+                <p className="mt-[0.35vw] font-ui text-[clamp(6.5px,1.12vw,22px)] font-medium text-[#1b1a1c] leading-[1.35] whitespace-nowrap">
+                  Sozni, Aari and fine weaves
+                </p>
+              </div>
+
+              {/* Vertical Pink Divider 2 */}
+              <div
+                aria-hidden="true"
+                className="w-[1.5px] h-[clamp(24px,4.8vw,94px)] bg-gradient-to-b from-transparent via-[#f04f84] to-transparent self-end mb-[0.4vw]"
+              />
+
+              {/* Column 3: Boutique Craftsmanship */}
+              <div className="flex flex-col items-center text-center px-[1vw]">
+                <MannequinIcon className="w-[clamp(22px,4.5vw,88px)] h-[clamp(22px,4.5vw,88px)] text-[#e5195e]" />
+                <h3 className="mt-[0.5vw] font-editorial text-[clamp(9.5px,1.78vw,35px)] font-bold text-[#121214] leading-[1.15] whitespace-nowrap">
+                  Boutique Craftsmanship
+                </h3>
+                <p className="mt-[0.35vw] font-ui text-[clamp(6.5px,1.12vw,22px)] font-medium text-[#1b1a1c] leading-[1.35] whitespace-nowrap">
+                  Thoughtfully designed in-house collections
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ===================================================================
+            PART B — SECTION 3: OUR BELIEF
+            - Left: Boutique designer working on a garment sketch at a design table.
+            - Right: "OUR BELIEF" eyebrow + lotus divider, "Tradition for Today's Woman"
+              heading, supporting description, and bottom lotus floral divider.
+            =================================================================== */}
+        <section
+          aria-labelledby="our-belief-heading"
+          className="relative w-full aspect-[1115/436] overflow-hidden bg-[#fef6f8]"
+        >
+          {/* Dedicated Our Belief Background Asset (Designer at Table on Left + Pink Waves on Bottom-Right) */}
+          <img
+            src={getAssetUrl('assets/aistudio/our_story_belief_bg.png')}
+            alt="Boutique fashion designer sketching an embroidered Kashmiri garment at a design table"
+            referrerPolicy="no-referrer"
+            className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
+          />
+
+          {/* Right-Side Content Container */}
+          <div className="relative z-10 ml-[53.5%] w-[44.5%] h-full flex flex-col items-center justify-center text-center pr-[2%] pb-[1%]">
+            {/* Eyebrow: — OUR BELIEF — */}
+            <div className="flex items-center justify-center gap-[1.3vw] w-full">
+              <span
+                aria-hidden="true"
+                className="h-[1.5px] w-[clamp(18px,4.8vw,94px)] bg-gradient-to-r from-transparent via-[#ec467d] to-[#e5195e]"
+              />
+              <p className="font-ui text-[clamp(8.5px,1.45vw,28px)] font-bold uppercase tracking-[0.25em] text-[#e5195e] leading-none whitespace-nowrap">
+                OUR BELIEF
+              </p>
+              <span
+                aria-hidden="true"
+                className="h-[1.5px] w-[clamp(18px,4.8vw,94px)] bg-gradient-to-l from-transparent via-[#ec467d] to-[#e5195e]"
+              />
+            </div>
+
+            {/* Small Lotus Floral Divider under Eyebrow */}
+            <div
+              aria-hidden="true"
+              className="mt-[0.55vw] flex items-center justify-center gap-[0.7vw]"
             >
-              From Kashmir to Your Everyday Story
+              <span className="h-[1.2px] w-[clamp(14px,3.6vw,70px)] bg-gradient-to-r from-transparent to-[#e5195e]/75" />
+              <LotusOutlineIcon
+                className="w-[clamp(14px,2.5vw,48px)] h-[clamp(10px,1.7vw,32px)] text-[#e5195e]"
+                strokeWidth={2.2}
+              />
+              <span className="h-[1.2px] w-[clamp(14px,3.6vw,70px)] bg-gradient-to-l from-transparent to-[#e5195e]/75" />
+            </div>
+
+            {/* Main Heading: "Tradition for" + "Today's Woman" */}
+            <h2
+              id="our-belief-heading"
+              className="mt-[0.8vw] font-editorial text-[clamp(16px,3.8vw,74px)] font-normal text-[#121214] leading-[1.08] tracking-[-0.01em]"
+            >
+              <span className="block whitespace-nowrap">Tradition for</span>
+              <span className="block font-script text-[#e5195e] text-[1.32em] leading-[1.04] whitespace-nowrap mt-[0.1vw]">
+                Today&rsquo;s Woman
+              </span>
             </h2>
-            <p className="font-script text-3xl sm:text-4xl text-[#f82a62] -rotate-1">
-              Colours, Culture &amp; Contemporary Style
-            </p>
-            <p className="font-ui text-sm sm:text-base text-[#2c2826] leading-relaxed">
-              We believe handcrafted Kashmiri textiles belong not only in
-              heirloom trunks, but in the joyful moments of modern life. By
-              pairing authentic valley embroidery with luminous pastel palettes
-              and fluid silhouettes, each Shafiya creation honours tradition
-              while feeling effortlessly contemporary.
+
+            {/* Supporting Description */}
+            <p className="mt-[1.1vw] font-ui text-[clamp(7.5px,1.32vw,26px)] font-medium text-[#1b1a1c] leading-[1.46] tracking-[0.005em]">
+              <span className="block whitespace-nowrap">
+                To preserve Kashmir&rsquo;s artistry while
+              </span>
+              <span className="block whitespace-nowrap">
+                creating elegant, wearable designs
+              </span>
+              <span className="block whitespace-nowrap">
+                for the modern woman.
+              </span>
             </p>
 
-            <div className="pt-2">
-              <button
-                type="button"
-                onClick={() => onNavigate('Contact')}
-                className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-[#f82a62] hover:bg-[#df1950] text-white text-xs sm:text-sm font-semibold shadow-[0_6px_18px_rgba(248,42,98,0.25)] transition-all cursor-pointer"
-              >
-                <span>Start a Custom Design Conversation</span>
-                <ArrowRight className="w-4 h-4 stroke-[2]" />
-              </button>
+            {/* Bottom Lotus Floral Divider */}
+            <div
+              aria-hidden="true"
+              className="mt-[1.6vw] flex items-center justify-center gap-[0.9vw]"
+            >
+              <span className="h-[1.3px] w-[clamp(24px,6.8vw,132px)] bg-gradient-to-r from-transparent to-[#e5195e]/80" />
+              <LotusOutlineIcon
+                className="w-[clamp(16px,2.9vw,56px)] h-[clamp(11px,1.95vw,38px)] text-[#e5195e]"
+                strokeWidth={2.2}
+              />
+              <span className="h-[1.3px] w-[clamp(24px,6.8vw,132px)] bg-gradient-to-l from-transparent to-[#e5195e]/80" />
             </div>
           </div>
+        </section>
+      </div>
 
-          {/* Right Lookbook Triptych Grid */}
-          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5">
-            <div className="rounded-[24px] overflow-hidden bg-[#dcd0f5] shadow-sm flex flex-col">
-              <img
-                src={getAssetUrl('assets/aistudio/cat_2_suits.png')}
-                alt="Handcrafted Kashmiri Suits"
-                referrerPolicy="no-referrer"
-                className="w-full aspect-[4/3] object-cover"
-              />
-              <div className="p-4">
-                <p className="font-editorial text-xl font-bold text-[#141416]">
-                  Pastel Silk Suits
-                </p>
-                <p className="font-ui text-[10px] font-semibold uppercase tracking-[0.16em] text-[#2c2826] mt-0.5">
-                  DELICATE FLORAL THREADWORK
-                </p>
-              </div>
-            </div>
-
-            <div className="rounded-[24px] overflow-hidden bg-[#c0f2e9] shadow-sm flex flex-col">
-              <img
-                src={getAssetUrl('assets/aistudio/cat_3_pherans.png')}
-                alt="Handcrafted Kashmiri Pherans"
-                referrerPolicy="no-referrer"
-                className="w-full aspect-[4/3] object-cover"
-              />
-              <div className="p-4">
-                <p className="font-editorial text-xl font-bold text-[#141416]">
-                  Modern Pherans
-                </p>
-                <p className="font-ui text-[10px] font-semibold uppercase tracking-[0.16em] text-[#2c2826] mt-0.5">
-                  VALLEY SILHOUETTES
-                </p>
-              </div>
-            </div>
-
-            <div className="rounded-[24px] overflow-hidden bg-[#bfeaf5] shadow-sm flex flex-col">
-              <img
-                src={getAssetUrl('assets/aistudio/cat_6_custom.png')}
-                alt="Bespoke Kashmiri Custom Designs"
-                referrerPolicy="no-referrer"
-                className="w-full aspect-[4/3] object-cover"
-              />
-              <div className="p-4">
-                <p className="font-editorial text-xl font-bold text-[#141416]">
-                  Bespoke Couture
-                </p>
-                <p className="font-ui text-[10px] font-semibold uppercase tracking-[0.16em] text-[#2c2826] mt-0.5">
-                  YOUR STORY, OUR CRAFT
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* =====================================================================
-          5. SHARED WEBSITE FOOTER (Strictly Preserved)
-          ===================================================================== */}
+      {/* Shared Website Footer */}
       <Footer onNavigate={onNavigate} />
     </div>
   );
