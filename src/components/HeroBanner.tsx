@@ -144,16 +144,16 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
 
       {/* =====================================================================
           UNIFIED EDITORIAL HERO BANNER (Desktop, Tablet & Mobile)
-          - Mobile (<640px): Exact visual replication of reference (aspect-[371/182]),
+          - Mobile (<640px): Exact visual replication of ultra-HD reference (aspect-[954/476]),
             completely static background (model on left, cherry blossoms across top,
             wooden houseboat, Dal Lake & mountains on bottom-right, lotus divider),
             preserving all existing text animations.
           - Desktop (>=640px): STRICTLY UNCHANGED (sm:aspect-[2033/745] md:aspect-[2033/730] lg:aspect-[2033/715])
           ===================================================================== */}
-      <div className="relative w-full aspect-[371/182] sm:aspect-[2033/745] md:aspect-[2033/730] lg:aspect-[2033/715] max-w-[2560px] mx-auto overflow-hidden bg-[#fff9fb] sm:bg-white border-b border-[#f1e8df]">
+      <div className="relative w-full aspect-[954/476] sm:aspect-[2033/745] md:aspect-[2033/730] lg:aspect-[2033/715] max-w-[2560px] mx-auto overflow-hidden bg-[#fff9fb] sm:bg-white border-b border-[#f1e8df]">
         {/* ===================================================================
             MOBILE-ONLY STATIC HERO BACKGROUND (<640px)
-            Completely static background matching the supplied visual blueprint
+            Ultra-HD static background matching the supplied visual blueprint
             =================================================================== */}
         <img
           src={getAssetUrl('assets/aistudio/mobile_hero_exact_bg.png')}
@@ -208,9 +208,9 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
         />
 
         {/* 2-Column Responsive CSS Grid:
-            - Mobile (<640px): grid-cols-[48.8%_51.2%] matching reference text start at x=181/371
+            - Mobile (<640px): grid-cols-[49.2%_50.8%] matching ultra-HD reference text start at x=470/954
             - Desktop (>=640px): sm:grid-cols-[53.4%_46.6%] matching reference left margin at x=1086/2033 */}
-        <div className="relative z-20 w-full h-full grid grid-cols-[48.8%_51.2%] sm:grid-cols-[53.4%_46.6%] items-center">
+        <div className="relative z-20 w-full h-full grid grid-cols-[49.2%_50.8%] sm:grid-cols-[53.4%_46.6%] items-center">
           {/* Column 1: Protected Model Area — prevents any text from entering the model region */}
           <div aria-hidden="true" className="w-full h-full pointer-events-none" />
 
@@ -219,7 +219,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
             {/* ===============================================================
                 MOBILE VERSION (<640px) — EXACT REFERENCE POSITION & PRESERVED TEXT ANIMATIONS
                 =============================================================== */}
-            <div className="sm:hidden -mt-[28%]">
+            <div className="sm:hidden -mt-[28.5%]">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={`mobile-hero-content-${mobileSlide.id}`}
@@ -229,7 +229,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
                   transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <div className="relative inline-block">
-                    <h1 className="font-editorial text-[clamp(18px,6.25vw,38px)] font-normal text-[#141416] leading-[1.06] tracking-[-0.015em]">
+                    <h1 className="font-editorial text-[clamp(18px,6.3vw,38px)] font-normal text-[#141416] leading-[1.06] tracking-[-0.015em]">
                       <span className="block whitespace-nowrap">
                         {mobileSlide.headlineLine1}
                       </span>

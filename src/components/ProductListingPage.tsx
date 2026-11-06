@@ -1028,13 +1028,12 @@ export const ProductListingPage: React.FC<ProductListingPageProps> = ({
                                 })}
                               </span>
 
-                              {/* Rating Number, Review Count & Sold Count — Fully visible without clipping */}
-                              <span className="mt-0.5 font-ui text-[8.5px] sm:text-[10.5px] xl:text-[11px] leading-tight tracking-[-0.015em] text-[#4a4542] group-hover/rating:text-[#f81d5c] transition-colors whitespace-nowrap">
+                              {/* Rating Number & Review Count */}
+                              <span className="mt-0.5 font-ui text-[9.5px] sm:text-[10.5px] xl:text-[11px] leading-tight tracking-[-0.015em] text-[#4a4542] group-hover/rating:text-[#f81d5c] transition-colors whitespace-nowrap">
                                 <strong className="font-bold text-[#141824] group-hover/rating:text-[#f81d5c]">
                                   {product.rating}
                                 </strong>{' '}
-                                ({product.reviewCount} reviews) ·{' '}
-                                {product.soldCount} sold
+                                ({product.reviewCount} reviews)
                               </span>
                             </button>
 
