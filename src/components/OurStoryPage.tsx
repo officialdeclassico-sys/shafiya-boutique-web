@@ -194,7 +194,7 @@ export const OurStoryPage: React.FC<OurStoryPageProps> = ({
   onToggleWishlistItem,
 }) => {
   return (
-    <div className="min-h-screen w-full bg-white flex flex-col justify-between overflow-x-hidden select-none">
+    <div className="w-full sm:min-h-screen bg-white flex flex-col justify-start sm:justify-between overflow-x-hidden select-none">
       {/* Shared Website Header */}
       <div className="w-full bg-[#fcf8f3] border-b border-[#f1e9e0]">
         <Header
