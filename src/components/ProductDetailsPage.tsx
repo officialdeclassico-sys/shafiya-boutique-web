@@ -526,11 +526,7 @@ export const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({
           onOpenSignIn={onOpenSignIn}
           onSelectCategory={(cat) => {
             onSelectCategory?.(cat);
-            if (cat === 'Custom Designs') {
-              onNavigate('Custom Designs');
-            } else {
-              onBackToListing(cat);
-            }
+            onBackToListing(cat);
           }}
           bagItems={bagItems}
           onRemoveBagItem={onRemoveBagItem}

@@ -135,8 +135,7 @@ export const ProductListingPage: React.FC<ProductListingPageProps> = ({
   const [selectedCategories, setSelectedCategories] = useState<string[]>(() => {
     if (
       selectedCollectionCategory &&
-      selectedCollectionCategory !== 'All' &&
-      selectedCollectionCategory !== 'Custom Designs'
+      selectedCollectionCategory !== 'All'
     ) {
       if (selectedCollectionCategory === 'Suits') {
         return ['Kashmiri Embroidered Suits'];
@@ -157,7 +156,7 @@ export const ProductListingPage: React.FC<ProductListingPageProps> = ({
       setSelectedCategories([]);
     } else if (selectedCollectionCategory === 'Suits') {
       setSelectedCategories(['Kashmiri Embroidered Suits']);
-    } else if (selectedCollectionCategory !== 'Custom Designs') {
+    } else {
       setSelectedCategories([selectedCollectionCategory]);
     }
   }, [selectedCollectionCategory]);
@@ -341,9 +340,6 @@ export const ProductListingPage: React.FC<ProductListingPageProps> = ({
               onOpenSignIn={onOpenSignIn}
               onSelectCategory={(cat) => {
                 onSelectCategory?.(cat);
-                if (cat === 'Custom Designs') {
-                  onNavigate('Custom Designs');
-                }
               }}
               bagItems={bagItems}
               onRemoveBagItem={onRemoveBagItem}

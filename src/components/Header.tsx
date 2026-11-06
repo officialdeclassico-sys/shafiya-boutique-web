@@ -32,20 +32,17 @@ const DRAWER_AND_MENU_CATEGORIES: { id: string; title: string; subtitle: string 
   { id: 'Shawls', title: 'Shawls', subtitle: 'PASHMINA & AARI' },
   { id: 'Stoles', title: 'Stoles', subtitle: 'LIGHTWEIGHT LUXURY' },
   { id: 'Accessories', title: 'Accessories', subtitle: 'POTLIS & ACCENTS' },
-  { id: 'Custom Designs', title: 'Custom Designs', subtitle: 'BESPOKE ATELIER' },
 ];
 
 export type NavItemKey =
   | 'Home'
   | 'Collections'
-  | 'Custom Designs'
   | 'Our Story'
   | 'Contact';
 
 const NAV_ITEMS: { label: NavItemKey; targetId: string }[] = [
   { label: 'Home', targetId: 'home' },
   { label: 'Collections', targetId: 'collections' },
-  { label: 'Custom Designs', targetId: 'custom-designs' },
   { label: 'Our Story', targetId: 'our-story' },
   { label: 'Contact', targetId: 'contact' },
 ];
@@ -310,10 +307,10 @@ export const Header: React.FC<HeaderProps> = ({
           />
         </div>
 
-        {/* 2. Navigation Menu (Desktop: one horizontal row with exact 5 items) */}
+        {/* 2. Navigation Menu (Desktop: one horizontal row with 4 evenly aligned items) */}
         <nav
           aria-label="Primary Navigation"
-          className="flex items-center gap-6 xl:gap-9 -mt-2 shrink-0"
+          className="flex items-center justify-center gap-8 xl:gap-12 -mt-2 shrink-0"
         >
           {NAV_ITEMS.map((item) => {
             const isActive = currentActiveNav === item.label;
@@ -398,11 +395,7 @@ export const Header: React.FC<HeaderProps> = ({
                         onClick={() => {
                           onSelectCategory?.(cat.id);
                           setSubmittedSearch(null);
-                          if (cat.id === 'Custom Designs') {
-                            handleNavClick();
-                          } else {
-                            handleNavClick();
-                          }
+                          handleNavClick('Collections');
                         }}
                         className="w-full text-left px-3 py-2 rounded-xl hover:bg-[#f4ebe2] transition-colors flex items-center justify-between cursor-pointer"
                       >
@@ -757,11 +750,7 @@ export const Header: React.FC<HeaderProps> = ({
                         onSelectCategory?.(cat.id);
                         setSubmittedSearch(null);
                         setMobileSearchOpen(false);
-                        if (cat.id === 'Custom Designs') {
-                          handleNavClick();
-                        } else {
-                          handleNavClick();
-                        }
+                        handleNavClick('Collections');
                       }}
                       className="w-full text-left px-3 py-2 rounded-xl hover:bg-[#f4ebe2] transition-colors flex items-center justify-between"
                     >

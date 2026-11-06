@@ -44,7 +44,6 @@ interface ContactPageProps {
   onToggleHeaderWishlist?: () => void;
   onToggleWishlistItem?: (id: string) => void;
   initialEnquiryType?: string;
-  isCustomDesigns?: boolean;
 }
 
 const ENQUIRY_TYPES = [
@@ -163,7 +162,6 @@ export const ContactPage: React.FC<ContactPageProps> = ({
   onToggleHeaderWishlist,
   onToggleWishlistItem,
   initialEnquiryType = '',
-  isCustomDesigns = false,
 }) => {
   // Customer Enquiry Form state
   const [fullName, setFullName] = useState('');
@@ -277,11 +275,11 @@ export const ContactPage: React.FC<ContactPageProps> = ({
   };
 
   return (
-    <div className="w-full sm:min-h-screen bg-gradient-to-b from-[#fff9fb] via-[#fdf0f5] to-[#fcebf2] flex flex-col justify-start sm:justify-between overflow-x-hidden select-none">
+    <div className="w-full min-h-screen min-h-[100dvh] flex-1 bg-gradient-to-b from-[#fff9fb] via-[#fdf0f5] to-[#fcebf2] flex flex-col justify-between overflow-x-clip select-none">
       {/* Shared Website Header */}
       <div className="w-full bg-[#fcf8f3] border-b border-[#f1e9e0]">
         <Header
-          activePage={isCustomDesigns ? 'Custom Designs' : 'Contact'}
+          activePage="Contact"
           onNavigate={onNavigate}
           onOpenSignIn={onOpenSignIn}
           onSelectCategory={onSelectCategory}
@@ -322,7 +320,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
             {/* 1. Eyebrow + Tapered Pink Line */}
             <div className="flex items-center gap-[0.9vw]">
               <p className="font-ui text-[clamp(7px,0.86vw,18px)] font-bold uppercase tracking-[0.22em] text-[#ee1d5e] leading-none whitespace-nowrap">
-                {isCustomDesigns ? 'BESPOKE COUTURE' : 'GET IN TOUCH'}
+                GET IN TOUCH
               </p>
               <span
                 aria-hidden="true"
@@ -336,12 +334,12 @@ export const ContactPage: React.FC<ContactPageProps> = ({
               className="mt-[0.75vw] font-editorial text-[clamp(16px,4.25vw,88px)] font-normal text-[#121621] leading-[1.03] tracking-[-0.015em]"
             >
               <span className="block whitespace-nowrap">
-                {isCustomDesigns ? 'Custom Designs' : 'Let\u2019s Create'}
+                Let&rsquo;s Create
               </span>
               <span className="relative block w-fit whitespace-nowrap">
-                <span>{isCustomDesigns ? 'Crafted ' : 'Something '}</span>
+                <span>Something </span>
                 <motion.span
-                  key={isCustomDesigns ? 'script-bespoke' : 'script-beautiful'}
+                  key="script-beautiful"
                   initial={{ opacity: 0, x: -6, y: 4, scale: 0.96 }}
                   animate={{ opacity: 1, x: 0, y: 0, scale: 1 }}
                   transition={{
@@ -351,32 +349,19 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                   }}
                   className="inline-block font-script text-[#ee1d5e] text-[1.24em] leading-[0.88] ml-[0.06em] align-baseline select-none"
                 >
-                  {isCustomDesigns ? 'For You' : 'Beautiful'}
+                  Beautiful
                 </motion.span>
               </span>
             </h1>
 
             {/* 3. Supporting Description */}
             <p className="mt-[0.95vw] font-ui text-[clamp(7px,1.08vw,22px)] font-normal text-[#18191e] leading-[1.48] tracking-[0.004em]">
-              {isCustomDesigns ? (
-                <>
-                  <span className="block whitespace-nowrap">
-                    Commission a bespoke Kashmiri outfit or bridal shawl tailored
-                  </span>
-                  <span className="block whitespace-nowrap">
-                    with master Sozni and Aari embroidery to your measurements.
-                  </span>
-                </>
-              ) : (
-                <>
-                  <span className="block whitespace-nowrap">
-                    Have a question, a custom design idea, or simply want to
-                  </span>
-                  <span className="block whitespace-nowrap">
-                    know more about our collections? We&rsquo;re here to help.
-                  </span>
-                </>
-              )}
+              <span className="block whitespace-nowrap">
+                Have a question, a custom design idea, or simply want to
+              </span>
+              <span className="block whitespace-nowrap">
+                know more about our collections? We&rsquo;re here to help.
+              </span>
             </p>
 
             {/* 4. Three Feature Items with Vertical Pink Dividers (Desktop & Tablet sm:grid, compact on mobile) */}

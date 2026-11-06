@@ -194,9 +194,9 @@ export const OurStoryPage: React.FC<OurStoryPageProps> = ({
   onToggleWishlistItem,
 }) => {
   return (
-    <div className="w-full sm:min-h-screen bg-white flex flex-col justify-start sm:justify-between overflow-x-hidden select-none">
+    <div className="w-full min-h-screen min-h-[100dvh] flex-1 bg-white flex flex-col justify-start overflow-x-clip select-none">
       {/* Shared Website Header */}
-      <div className="w-full bg-[#fcf8f3] border-b border-[#f1e9e0]">
+      <div className="w-full shrink-0 bg-[#fcf8f3] border-b border-[#f1e9e0]">
         <Header
           activePage="Our Story"
           onNavigate={onNavigate}
@@ -214,7 +214,7 @@ export const OurStoryPage: React.FC<OurStoryPageProps> = ({
       </div>
 
       {/* Main Our Story Content Wrapper */}
-      <div className="w-full max-w-[2560px] mx-auto bg-white">
+      <div className="w-full max-w-[2560px] mx-auto bg-white flex-1 flex flex-col">
         {/* ===================================================================
             PART A — TOP SECTION: OUR STORY HERO BANNER
             - Replicates reference top section background, cherry blossoms,
@@ -224,18 +224,18 @@ export const OurStoryPage: React.FC<OurStoryPageProps> = ({
             =================================================================== */}
         <section
           aria-labelledby="our-story-hero-heading"
-          className="relative w-full aspect-[1115/446] overflow-hidden bg-[#fdf5f7]"
+          className="relative w-full aspect-[1115/446] flex-[446_1_auto] flex flex-col justify-center overflow-hidden bg-[#fdf5f7]"
         >
           {/* Dedicated Our Story Hero Background Asset */}
           <img
             src={getAssetUrl('assets/aistudio/our_story_hero_bg.png')}
             alt="Kashmiri woman wearing traditional floral embroidered shawl and jhumka earrings surrounded by pink blossoms"
             referrerPolicy="no-referrer"
-            className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
+            className="absolute inset-0 w-full h-full object-cover object-[72%_center] sm:object-center pointer-events-none"
           />
 
           {/* Left-Side Hero Typography Container (begins directly with Main Headline, no "OUR STORY" eyebrow) */}
-          <div className="relative z-10 w-[59%] h-full flex flex-col items-center justify-center text-center pl-[5.5%] pr-[2%] pb-[2.5%]">
+          <div className="relative z-10 w-[59%] flex-1 flex flex-col items-center justify-center text-center pl-[5.5%] pr-[2%] pb-[2.5%]">
             <h1
               id="our-story-hero-heading"
               className="font-editorial text-[clamp(15px,3.75vw,76px)] font-normal text-[#121214] leading-[1.12] tracking-[-0.01em]"
@@ -266,7 +266,7 @@ export const OurStoryPage: React.FC<OurStoryPageProps> = ({
         </section>
 
         {/* White Horizontal Separator Bar */}
-        <div aria-hidden="true" className="w-full h-[clamp(4px,0.75vw,14px)] bg-white" />
+        <div aria-hidden="true" className="w-full h-[clamp(4px,0.75vw,14px)] shrink-0 bg-white" />
 
         {/* ===================================================================
             PART B — SECTION 1: CRAFTSMANSHIP IMAGE STRIP
@@ -277,7 +277,7 @@ export const OurStoryPage: React.FC<OurStoryPageProps> = ({
             =================================================================== */}
         <section
           aria-label="Kashmiri Craftsmanship Visual Strip"
-          className="relative w-full aspect-[1115/247] bg-white overflow-hidden"
+          className="relative w-full aspect-[1115/247] flex-[247_1_auto] bg-white overflow-hidden"
         >
           {/* Panel 1: Hand Embroidery (Left) */}
           <div
@@ -326,7 +326,7 @@ export const OurStoryPage: React.FC<OurStoryPageProps> = ({
         </section>
 
         {/* White Horizontal Separator Bar */}
-        <div aria-hidden="true" className="w-full h-[clamp(3px,0.55vw,11px)] bg-white" />
+        <div aria-hidden="true" className="w-full h-[clamp(3px,0.55vw,11px)] shrink-0 bg-white" />
 
         {/* ===================================================================
             PART B — SECTION 2: OUR CRAFT
@@ -336,7 +336,7 @@ export const OurStoryPage: React.FC<OurStoryPageProps> = ({
             =================================================================== */}
         <section
           aria-labelledby="our-craft-heading"
-          className="relative w-full aspect-[1115/267] overflow-hidden bg-[#fdeef2]"
+          className="relative w-full aspect-[1115/267] flex-[267_1_auto] flex flex-col justify-center overflow-hidden bg-[#fdeef2]"
         >
           {/* Dedicated Our Craft Background with Blush Glow & Bottom Pink Silk Waves */}
           <img
@@ -344,10 +344,10 @@ export const OurStoryPage: React.FC<OurStoryPageProps> = ({
             alt=""
             aria-hidden="true"
             referrerPolicy="no-referrer"
-            className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
+            className="absolute inset-0 w-full h-full object-cover object-bottom pointer-events-none"
           />
 
-          <div className="relative z-10 w-full h-full flex flex-col items-center justify-start pt-[2.15%] px-[3.5%]">
+          <div className="relative z-10 w-full flex-1 flex flex-col items-center justify-center pb-[1.5%] px-[3.5%]">
             {/* Top Centered Heading: — OUR CRAFT — */}
             <div className="flex items-center justify-center gap-[1.8vw] w-full">
               <span
@@ -427,18 +427,18 @@ export const OurStoryPage: React.FC<OurStoryPageProps> = ({
             =================================================================== */}
         <section
           aria-labelledby="our-belief-heading"
-          className="relative w-full aspect-[1115/436] overflow-hidden bg-[#fef6f8]"
+          className="relative w-full aspect-[1115/436] flex-[436_1_auto] flex flex-col justify-center overflow-hidden bg-[#fef6f8]"
         >
           {/* Dedicated Our Belief Background Asset (Designer at Table on Left + Pink Waves on Bottom-Right) */}
           <img
             src={getAssetUrl('assets/aistudio/our_story_belief_bg.png')}
             alt="Boutique fashion designer sketching an embroidered Kashmiri garment at a design table"
             referrerPolicy="no-referrer"
-            className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
+            className="absolute inset-0 w-full h-full object-cover object-[28%_center] sm:object-center pointer-events-none"
           />
 
           {/* Right-Side Content Container */}
-          <div className="relative z-10 ml-[53.5%] w-[44.5%] h-full flex flex-col items-center justify-center text-center pr-[2%] pb-[1%]">
+          <div className="relative z-10 ml-[53.5%] w-[44.5%] flex-1 flex flex-col items-center justify-center text-center pr-[2%] pb-[1%]">
             {/* Eyebrow: — OUR BELIEF — */}
             <div className="flex items-center justify-center gap-[1.3vw] w-full">
               <span

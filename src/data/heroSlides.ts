@@ -153,15 +153,6 @@ export const COLLECTION_CATEGORIES: CollectionCategory[] = [
     hoverBgColor: '#fad4d4',
     description: 'Hand-embroidered Kashmiri velvet & silk potli bags and artisanal jewellery.',
   },
-  {
-    id: 'Custom Designs',
-    title: 'Custom Designs',
-    subtitle: 'YOUR STORY, OUR CRAFT',
-    image: getAssetUrl('assets/aistudio/cat_6_custom.png'),
-    bgColor: '#c5edfe',
-    hoverBgColor: '#b2e6fd',
-    description: 'Bespoke bridal trousseaus and made-to-measure silhouettes tailored to your story.',
-  },
 ];
 
 export interface FeaturedPiece {
@@ -231,17 +222,6 @@ export const FEATURED_PIECES: FeaturedPiece[] = [
     image: getAssetUrl('assets/aistudio/cat_5_accessories.png'),
     pastelBg: '#fce2e2',
     accentColor: '#e11d48',
-  },
-  {
-    id: 'midnight-bloom-bespoke',
-    name: 'Midnight Bloom Bespoke Ensemble',
-    category: 'Custom Designs',
-    craftNote: 'Made-to-Measure · Custom Motif Placement',
-    price: '₹28,500',
-    numericPrice: 28500,
-    image: getAssetUrl('assets/aistudio/cat_6_custom.png'),
-    pastelBg: '#c5edfe',
-    accentColor: '#0284c7',
   },
 ];
 

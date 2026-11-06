@@ -94,9 +94,6 @@ function parseRouteFromLocation(): {
   if (route === 'our-story' || route.startsWith('our-story')) {
     return { page: 'Our Story' };
   }
-  if (route === 'custom-designs' || route.startsWith('custom-designs')) {
-    return { page: 'Custom Designs' };
-  }
   if (
     route === 'contact' ||
     route === 'contact-us' ||
@@ -151,9 +148,6 @@ function getPathForPage(page: AppView, productSlug?: string): string {
   switch (page) {
     case 'Our Story':
       subpath = '/our-story';
-      break;
-    case 'Custom Designs':
-      subpath = '/custom-designs';
       break;
     case 'Contact':
       subpath = '/contact';
@@ -585,7 +579,7 @@ export default function App() {
   };
 
   return (
-    <main className="w-full bg-[#fcfaf6] overflow-x-clip">
+    <main className="w-full min-h-screen min-h-[100dvh] flex flex-col bg-[#fcfaf6] overflow-x-clip">
       {currentPage === 'Bag' ||
       currentPage === 'Checkout' ||
       currentPage === 'OrderConfirmation' ? (
@@ -612,18 +606,13 @@ export default function App() {
           onToggleHeaderWishlist={handleToggleHeaderWishlist}
           onToggleWishlistItem={handleToggleWishlist}
         />
-      ) : currentPage === 'Contact' || currentPage === 'Custom Designs' ? (
+      ) : currentPage === 'Contact' ? (
         <ContactPage
-          isCustomDesigns={currentPage === 'Custom Designs'}
           onOpenSignIn={() => setSignInOpen(true)}
           onNavigate={handleNavigate}
           onSelectCategory={(cat) => {
             setSelectedCategory(cat);
-            if (cat === 'Custom Designs') {
-              handleNavigate('Custom Designs');
-            } else {
-              handleNavigate('Collections');
-            }
+            handleNavigate('Collections');
           }}
           bagItems={bagItems}
           onAddSampleBagItem={handleAddSampleBagItem}
@@ -633,9 +622,6 @@ export default function App() {
           wishlistActive={wishlistIds.length > 0}
           onToggleHeaderWishlist={handleToggleHeaderWishlist}
           onToggleWishlistItem={handleToggleWishlist}
-          initialEnquiryType={
-            currentPage === 'Custom Designs' ? 'Custom Design Enquiry' : ''
-          }
         />
       ) : currentPage === 'Our Story' ? (
         <OurStoryPage
@@ -643,11 +629,7 @@ export default function App() {
           onNavigate={handleNavigate}
           onSelectCategory={(cat) => {
             setSelectedCategory(cat);
-            if (cat === 'Custom Designs') {
-              handleNavigate('Custom Designs');
-            } else {
-              handleNavigate('Collections');
-            }
+            handleNavigate('Collections');
           }}
           bagItems={bagItems}
           onAddSampleBagItem={handleAddSampleBagItem}
@@ -708,13 +690,9 @@ export default function App() {
             onOpenSignIn={() => setSignInOpen(true)}
             onSelectCategory={(cat) => {
               setSelectedCategory(cat);
-              if (cat === 'Custom Designs') {
-                handleNavigate('Custom Designs');
-              } else {
-                document
-                  .getElementById('collection-catalog-section')
-                  ?.scrollIntoView({ behavior: 'smooth' });
-              }
+              document
+                .getElementById('collection-catalog-section')
+                ?.scrollIntoView({ behavior: 'smooth' });
             }}
             bagItems={bagItems}
             onAddSampleBagItem={handleAddSampleBagItem}

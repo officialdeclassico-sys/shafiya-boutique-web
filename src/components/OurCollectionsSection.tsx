@@ -16,23 +16,12 @@ export const OurCollectionsSection: React.FC<OurCollectionsSectionProps> = ({
 }) => {
   const handleCardClick = (cat: CollectionCategory) => {
     onSelectCategory(cat.id);
-    if (cat.id === 'Custom Designs' && onNavigate) {
-      onNavigate('Custom Designs');
-      window.setTimeout(() => {
-        const el = document.getElementById('contact-enquiry');
-        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        else window.scrollTo({ top: 0, behavior: 'smooth' });
-      }, 40);
-      return;
-    }
     if (onNavigate) {
       onNavigate('Collections');
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
-    const targetId =
-      cat.id === 'Custom Designs' ? 'custom-designs' : 'featured-collection';
-    const el = document.getElementById(targetId);
+    const el = document.getElementById('featured-collection');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
