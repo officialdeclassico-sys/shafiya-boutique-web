@@ -1,0 +1,12 @@
+node_modules/
+build/
+dist/
+coverage/
+.aistudio/
+.vite/
+.cache/
+*.tsbuildinfo
+.DS_Store
+*.log
+.env*
+!.env.example

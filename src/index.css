@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-serif-editorial: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+    --font-serif-logo: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+    --font-sans-ui: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-script: 'Alex Brush', cursive;
+    --font-handwritten: 'Caveat', cursive;
+  }
+
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #fcf8f3;
+    color: #18181b;
+    font-family: var(--font-sans-ui);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: clip;
+  }
+}
+
+/* Subtle custom scrollbar for sticky filter panel */
+.custom-filter-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #dfd5cb transparent;
+}
+.custom-filter-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+.custom-filter-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-filter-scrollbar::-webkit-scrollbar-thumb {
+  background: #e2d7cc;
+  border-radius: 9999px;
+}
+.custom-filter-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #cfbeaf;
+}
+
+.font-editorial {
+  font-family: var(--font-serif-editorial);
+}
+
+.font-logo {
+  font-family: var(--font-serif-logo);
+}
+
+.font-ui {
+  font-family: var(--font-sans-ui);
+}
+
+.font-script {
+  font-family: var(--font-script);
+}
+
+.font-handwritten {
+  font-family: var(--font-handwritten);
+}
+
+/* Hide visual horizontal/vertical scrollbars while preserving touch & swipe scrolling */
+.no-scrollbar {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
